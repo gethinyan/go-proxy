@@ -32,7 +32,6 @@ func handleServer(sc net.Conn) {
 	cc := pkg.CipherConn{Conn: sc}
 
 	addr, err := socks.ReadAddr(sc)
-	// fmt.Println(addr)
 	if err != nil {
 		return
 	}

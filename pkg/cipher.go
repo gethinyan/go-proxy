@@ -29,13 +29,7 @@ func (cc CipherConn) Encode(src []byte, dst []byte) {
 		fmt.Println(err)
 		return
 	}
-
-	// fmt.Println("EncodeBefore：", src)
-	// 一个字节一个字节加密
-	for i := 0; i < len(src); i++ {
-		encoder.XORKeyStream(dst[i:i+1], src[i:i+1])
-	}
-	// fmt.Println("EncodeAfter：", dst)
+	encoder.XORKeyStream(dst, src)
 
 	return
 }
@@ -48,13 +42,7 @@ func (cc CipherConn) Decode(dst []byte, src []byte, n int) {
 		fmt.Println(err)
 		return
 	}
-
-	// fmt.Println("DecodeBefore：", dst)
-	// 一个字节一个字节解密
-	for i := 0; i < n; i++ {
-		decoder.XORKeyStream(src[i:i+1], dst[i:i+1])
-	}
-	// fmt.Println("DecodeAfter：", src)
+	decoder.XORKeyStream(src, dst)
 
 	return
 }
@@ -66,7 +54,7 @@ func (cc CipherConn) Read(b []byte) (n int, err error) {
 	if err != nil {
 		return 0, err
 	}
-	// 加密
+	// 解密
 	cc.Decode(buf, b, n)
 
 	return
