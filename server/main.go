@@ -9,8 +9,6 @@ import (
 	"github.com/gethinyan/go-proxy/socks"
 )
 
-const encryptKey = "testKey"
-
 func main() {
 	ln, err := net.Listen("tcp", ":8888")
 	if err != nil {
