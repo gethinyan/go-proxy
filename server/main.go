@@ -41,8 +41,6 @@ func handleServer(sc net.Conn) {
 	}
 	defer rc.Close()
 
-	go func() {
-		io.Copy(rc, cc)
-	}()
+	go io.Copy(rc, cc)
 	io.Copy(cc, rc)
 }

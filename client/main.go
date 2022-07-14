@@ -45,8 +45,6 @@ func handleClient(sc net.Conn) {
 		return
 	}
 
-	go func() {
-		io.Copy(cc, sc)
-	}()
+	go io.Copy(cc, sc)
 	io.Copy(sc, cc)
 }
