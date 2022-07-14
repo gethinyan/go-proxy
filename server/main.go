@@ -29,7 +29,7 @@ func handleServer(sc net.Conn) {
 	defer sc.Close()
 	cc := pkg.CipherConn{Conn: sc}
 
-	addr, err := socks.ReadAddr(sc)
+	addr, err := socks.ReadAddr(cc)
 	if err != nil {
 		return
 	}

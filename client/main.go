@@ -40,7 +40,7 @@ func handleClient(sc net.Conn) {
 	defer rc.Close()
 	cc := pkg.CipherConn{Conn: rc}
 
-	if _, err = cc.Conn.Write(addr); err != nil {
+	if _, err = cc.Write(addr); err != nil {
 		fmt.Printf("failed to send address: %v", err)
 		return
 	}
